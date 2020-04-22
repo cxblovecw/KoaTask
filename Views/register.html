@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<head>
+    <title>注册</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        form{
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+        }
+    </style>
+    <script src="./jquery-2.2.4.js"></script>
+</head>
+<body>
+    <form>
+        <p><label>手机<input type="text" id="account"></label></p>
+        <h6>字母开头，长度在6~18之间，只能包含字母、数字和下划线</h6>
+        <p><label>密码<input type="password" id="password"></label></p>
+        <button>注册</button>
+    </form>
+    <script>
+        $("#submit").click(function(){
+        let account=$("#account").val();
+        let password=$('#password').val();
+        if(RegExp(/^([0-9][0-9]{10})$/).test(account)&&RegExp(/^[a-zA-Z0-9]{5,17}$/).test(password)){
+            $.ajax('http://127.0.0.1:3000/register',{
+                method:"POST",
+                data:{
+                    account:account,
+                    password:password
+                },
+                success(data){
+                    console.log(data)
+                }
+            })
+        }else{
+            alert("手机或密码无效")
+        }
+            
+        })
+    </script>
+</body>

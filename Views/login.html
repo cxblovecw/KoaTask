@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+    <title>我是标题</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        form{
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+        }
+    </style>
+    <script src="./jquery-2.2.4.js"></script>
+</head>
+<body>
+    <!-- <form action="http://127.0.0.1:3000/login" method="POST">
+        <p><label>手机<input type="text" id="account" name="account" pattern="^([0-9][0-9]{10})$"></label></p>
+        <h6>字母开头，长度在6~18之间，只能包含字母、数字和下划线</h6>
+        <p><label>密码<input type="password" name="password" id="password" pattern="^[a-zA-Z0-9]{5,17}$"></label></p>
+        <button id="submit" type="submit">登录</button>
+    </form> -->
+    <p><label>手机<input type="text" id="account"></label></p>
+        <h6>字母开头，长度在6~18之间，只能包含字母、数字和下划线</h6>
+        <p><label>密码<input type="password" id="password"></label></p>
+        <button id="submit" type="submit">登录</button>
+    <script>
+        $("#submit").click(function(){
+        let account=$("#account").val();
+        let password=$('#password').val();
+        console.log(account,password)
+        if(RegExp(/^[a-zA-Z0-9]{5,17}$/).test(password)&&RegExp(/^([0-9][0-9]{10})$/).test(account)){
+            $.ajax('http://127.0.0.1:3000/login',{
+                method:"post",
+                data:{
+                    account:account,
+                    password:password
+                },
+                timeout:5000
+                ,
+                success(data){
+                    console.log(data)
+                },
+                error(err){
+                    console.log(err)
+                }
+            })
+        }else{
+            alert("手机或密码无效")
+        }
+        })
+    </script>
+</body>
