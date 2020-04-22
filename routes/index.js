@@ -1,3 +1,4 @@
+// @ts-nocheck
 const router = require('koa-router')()
 
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { user } = require('./init');
 
 function register(u) {
@@ -11,9 +12,9 @@ function findUser(options) {
 }
 
 
-findUser({ account: 17606059886 }).then(data => {
-    console.log(data)
-})
+// findUser({ account: 17606059886 }).then(data => {
+//     console.log(data)
+// })
 
 module.exports = {
     findUser: findUser,

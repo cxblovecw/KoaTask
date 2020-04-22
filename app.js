@@ -1,14 +1,19 @@
 const Koa = require('koa')
 const app = new Koa()
-const cors= require('koa-cors');
+const cors= require('koa2-cors');
 const bodyparser = require('koa-bodyparser')
 const Router=require('koa-router');
 const login=require('./routes/login');
 const register=require('./routes/register');
 
 app
-.use(cors({
-  origin:"*"
+app.use(cors({
+  origin:"*",
+  exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+  maxAge: 5,
+  credentials: true,
+  allowMethods: ['GET', 'POST', 'DELETE'],
+  allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }))
 .use(bodyparser())
 
